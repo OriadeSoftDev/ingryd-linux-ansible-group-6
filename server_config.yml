@@ -8,3 +8,12 @@
         path: /etc/apache2/apache2.conf
         regexp: '^ServerAdmin'
         line: 'ServerAdmin martin.mato@ingrydacademy.com'
+
+    - name: Ensure HTTP and HTTPS ports are open in firewall
+      become: yes
+      firewalld:
+        service: "{{ item }}"
+        immediate: yes
+      with_items:
+        - http
+        - https
