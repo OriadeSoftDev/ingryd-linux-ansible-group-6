@@ -17,3 +17,10 @@
       with_items:
         - http
         - https
+
+    - name: Start and Enable firewall
+      become: yes
+      service:
+        name: firewalled
+        state: started
+        enabled: yes
