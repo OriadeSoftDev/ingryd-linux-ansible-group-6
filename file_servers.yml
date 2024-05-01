@@ -33,3 +33,14 @@
         immediate: yes
         permanent: yes
 
+    - name: Copy admin_manual file # Section B, Question 4d
+      copy:
+        src: admin_manual
+        dest: /usr/local/bin/admin_manual
+
+    - name: Download and save PyCharm Community Edition
+      tags: PyCharm,Ubuntu,OracleLinux
+      get_url:
+        url: https://download.jetbrains.com/python/pycharm-community-2022.3.3.tar.gz
+        dest: /usr/local/bin/pycharm-community.tar.gz
+          
