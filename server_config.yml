@@ -1,0 +1,10 @@
+---
+- name: Configure web server
+  hosts: web_servers
+  tasks:
+    - name: Update ServerAdmin in Apache config
+      become: yes
+      lineinfile:
+        path: /etc/apache2/apache2.conf
+        regexp: '^ServerAdmin'
+        line: 'ServerAdmin martin.mato@ingrydacademy.com'
