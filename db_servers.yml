@@ -1,0 +1,43 @@
+---
+
+- hosts: db_servers
+  become: true
+  tasks:
+
+    - name: Install mySQL database server (Ubuntu) #Section: B, Question 3a
+      tags: MySQL,Ubuntu
+      apt:
+        name: mysql-server
+        state: present                    # Confirm if the package has been istalled already
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Install mySQL database server (OracleLinux)
+      tags: MySQL,OracleLinux
+      dnf:
+        name: mysql-server
+        state: present
+      when: ansible_distribution == "OracleLinux"
+
+    - name: Start and enable mySQL service #Section: B, Question 3b
+      tags: MySQL,Ubuntu
+      service:
+        name: mysql
+        state: started
+        enabled: yes                      # Make sure the service is started on booting
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Start and enable mySQL service #Section: B, Question 3b
+      tags: MySQL,OracleLinux
+      systemd:
+        name: mysqld
+        state: started
+        enabled: yes                      # Make sure the service is started on booting          
+      when: ansible_distribution == "OracleLinux"
+
+    - name: Assign password to mySQL root user #Section: B, Question 3b
+      tags: MySQL
+      user:
+        name: root
+        state: present
+        password: "mySQLingryd"
+
