@@ -1,41 +1,44 @@
 ---
 
 - hosts: all
-  tags: apache,httpd,update 
+  tags: apache,apache2,httpd,update 
   become: true
   tasks:
 
   - name: Install Updates (Ubuntu)
+    tags: always
     apt:
       update_cache: yes
     changed_when: false
     when: ansible_distribution == "Ubuntu"
       
   - name: Install Updates (OracleLinux)
+    tags: always
     dnf:
       update_cache: yes
     changed_when: false
     when: ansible_distribution == "OracleLinux"
 
   - name: Install apache and php packages (Ubuntu)
+    tags: apache,apache2,php,Ubuntu
     apt:
       name:
         - apache2
         - libapache2-mod-php
-      state: present #latest
+      state: latest
     when: ansible_distribution == "Ubuntu"
 
   - name: Install apache and php packages (OracleLinux)
-    tags: apache,apache2,OracleLinux
+    tags: apache,apache2,php,httpd,OracleLinux
     dnf:
       name:
         - httpd
         - php
-      state: present #latest
+      state: latest
     when: ansible_distribution == "OracleLinux"
 
   - name: Start httpd OracleLinux
-    tags: apache, centOS, OracleLinux,httpd
+    tags: apache,apache2,centOS,OracleLinux,httpd
     service:
       name: httpd
       state: started
