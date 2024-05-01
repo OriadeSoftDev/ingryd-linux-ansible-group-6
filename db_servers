@@ -1,0 +1,20 @@
+---
+
+- hosts: db_servers
+  become: true
+  tasks:
+
+    - name: Install mySQL database server (Ubuntu) #Section: B, Question 3a
+      tags: MySQL,Ubuntu
+      apt:
+        name: mysql-server
+        state: present                    # Confirm if the package has been istalled already
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Install mySQL database server (OracleLinux)
+      tags: MySQL,OracleLinux
+      dnf:
+        name: mysql-server
+        state: present
+      when: ansible_distribution == "OracleLinux"
+
