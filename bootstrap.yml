@@ -1,17 +1,14 @@
 ---
-
 - hosts: all
   become: true
   tasks:
 
   - name: Install Updates (Ubuntu)
-    tags: always
     apt:
       upgrade: yes
     when: ansible_distribution == "Ubuntu"
 
   - name: Install Updates (OracleLinux)
-    tags: aways
     dnf:
       update_only: yes
     when: ansible_distribution == "OracleLinux"

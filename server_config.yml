@@ -1,73 +1,17 @@
 ---
 
-- hosts: all
-  tags: apache,apache2,httpd,update 
+- hosts: web_servers
   become: true
-  tasks:
+  roles:
+    - web_servers
 
-  - name: Install Updates (Ubuntu)
-    tags: always
-    apt:
-      update_cache: yes
-    changed_when: false
-    when: ansible_distribution == "Ubuntu"
-      
-  - name: Install Updates (OracleLinux)
-    tags: always
-    dnf:
-      update_cache: yes
-    changed_when: false
-    when: ansible_distribution == "OracleLinux"
+- hosts: db_servers
+  become: true
+  roles:
+    - db_servers
 
-  - name: Install apache and php packages (Ubuntu)
-    tags: apache,apache2,php,Ubuntu
-    apt:
-      name:
-        - apache2
-        - libapache2-mod-php
-      state: latest
-    when: ansible_distribution == "Ubuntu"
-
-  - name: Install apache and php packages (OracleLinux)
-    tags: apache,apache2,php,httpd,OracleLinux
-    dnf:
-      name:
-        - httpd
-        - php
-      state: latest
-    when: ansible_distribution == "OracleLinux"
-
-  - name: Start httpd OracleLinux
-    tags: apache,apache2,centOS,OracleLinux,httpd
-    service:
-      name: httpd
-      state: started
-      enabled: yes
-    when: ansible_distribution == "OracleLinux"
-
-  - name: Configure web server
-    hosts: web_servers
-    tasks:
-    
-   - name: Update ServerAdmin in Apache config
-     become: yes
-     lineinfile:
-       path: /etc/apache2/apache2.conf
-       regexp: '^ServerAdmin'
-       line: 'ServerAdmin martin.mato@ingrydacademy.com'
-
-   - name: Ensure HTTP and HTTPS ports are open in firewall
-     become: yes
-     firewalld:
-       service: "{{ item }}"
-       immediate: yes
-     with_items:
-       - http
-       - https
-
-   - name: Start and Enable firewall
-     become: yes
-     service:
-       name: firewalled
-       state: started
-       enabled: yes
+- hosts: file_servers
+  become: true
+  roles:
+    - file_servers
+ 
