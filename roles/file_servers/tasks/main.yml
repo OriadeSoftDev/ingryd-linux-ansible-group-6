@@ -32,9 +32,17 @@
     src: admin_manual
     dest: /usr/local/bin/admin_manual
 
+- name: Check if the file exit
+  stat:
+    path: "/usr/local/bin/pycharm-community.tar.gz"
+  register: Pycharm
+
 - name: Download and save PyCharm Community Edition
+  when: not Pycharm.stat.exists or Pycharm.stat.size == 0
   tags: PyCharm,Ubuntu,OracleLinux
   get_url:
     url: https://download.jetbrains.com/python/pycharm-community-2022.3.3.tar.gz
     dest: /usr/local/bin/pycharm-community.tar.gz
-      
+    mode: 0755
+    owner: root
+    group: root
