@@ -1,9 +1,11 @@
+# Installs Samba file sharing service.
 - name: Install Samba # Section B, Question 4a
   tags: samba,Ubuntu,OracleLinux
   package:
     name: samba
     state: present
 
+# This playbook starts and enables the Samba service.
 - name: Start and enable Samba service # Section B, Question 4b
   tags: samba,Ubuntu,OracleLinux
   systemd:
@@ -11,6 +13,7 @@
     state: started
     enabled: yes
 
+# This playbook starts the Firewalld service (only for OracleLinux).
 - name: Start Firewalld
   tags: firewalld,Ubuntu,OracleLinux
   service:
@@ -19,6 +22,7 @@
     enabled: yes
   when: ansible_distribution == "OracleLinux"
 
+# This playbook Opens the Samba service port in the firewall.
 - name: Open Samba service port in firewall # Section B, Question 4c
   tags: firewalld,sambaUbuntu
   firewalld:
