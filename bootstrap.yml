@@ -4,6 +4,7 @@
   become: true
   tasks:
 
+# This playbook Updates each node's software packages.
   - name: Install Updates (Ubuntu)
     tags: always
     apt:
@@ -16,6 +17,7 @@
       update_only: yes
     when: ansible_distribution == "OracleLinux"
 
+# This playbook Creates an admin user with appropriate groups (sudo, adm, root).
   - name: Create User Admin1
     tags: always
     user:
@@ -29,6 +31,7 @@
         - adm
       append: yes
 
+# This playbook Makes the admin user a sudoer.
   - name: Make Admin1 a sudoer
     tags: always
     copy:
@@ -38,6 +41,7 @@
       group: root
       mode: 0440
 
+# This playbook Adds the SSH key for the admin user to each node.
   - name: Add ssh key for Admin1
     tags: always
     authorized_key:

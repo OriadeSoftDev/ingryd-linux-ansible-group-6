@@ -1,3 +1,5 @@
+# This section Assigns nodes to different groups: web_servers, db_servers, and file_servers.
+
 [web_servers]
 192.168.100.20
 
