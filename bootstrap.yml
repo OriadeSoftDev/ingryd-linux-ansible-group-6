@@ -25,4 +25,4 @@
     - name: Add ansible ssh key to authorized_keys
       authorized_key:
         user: admin
-        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+        key: "{{ lookup('file', '~/.ssh/ansible.pub') }}"
