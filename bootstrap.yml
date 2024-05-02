@@ -3,26 +3,41 @@
   become: true
   tasks:
 
-    - name: Update all packages
-      apt:
-        update_cache: yes
-        upgrade: dist
+  - name: Install Updates (Ubuntu)
+    apt:
+      upgrade: yes
+    when: ansible_distribution == "Ubuntu"
 
-    - name: Create admin user
-      user:
-        name: admin
-        groups: sudo,adm,root
-        append: yes
-        group: admin1
+  - name: Install Updates (OracleLinux)
+    dnf:
+      update_only: yes
+    when: ansible_distribution == "OracleLinux"
 
-    - name: Allow admin1 group to have sudo privileges
-      lineinfile:
-        dest: /etc/sudoers
-        state: present
-        regexp: '^%admin1'
-        line: '%admin1 ALL=(ALL) NOPASSWD: ALL'
+  - name: Create User Admin1
+    tags: always
+    user:
+      name: admin1
+      state: present
+      shell: /bin/bash
+      createhome: yes
+      groups: 
+        - root
+        - sudo
+        - adm
+      append: yes
 
-    - name: Add ansible ssh key to authorized_keys
-      authorized_key:
-        user: admin
-        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+  - name: Make Admin1 a sudoer
+    tags: always
+    copy:
+      src: sudoer_admin1
+      dest: /etc/sudoers.d/admin1
+      owner: root
+      group: root
+      mode: 0440
+
+  - name: Add ssh key for Admin1
+    tags: always
+    authorized_key:
+      user: admin1
+      key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGw2FYbGMrBTOPMRl8+4Dgyjsu0kNllThsJJyxaXmBGM ansible
+

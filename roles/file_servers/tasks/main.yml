@@ -1,0 +1,54 @@
+# Installs Samba file sharing service.
+- name: Install Samba # Section B, Question 4a
+  tags: samba,Ubuntu,OracleLinux
+  package:
+    name: samba
+    state: present
+
+# This task starts and enables the Samba service.
+- name: Start and enable Samba service # Section B, Question 4b
+  tags: samba,Ubuntu,OracleLinux
+  systemd:
+    name: smb
+    state: started
+    enabled: yes
+
+# This task starts the Firewalld service (only for OracleLinux).
+- name: Start Firewalld
+  tags: firewalld,Ubuntu,OracleLinux
+  service:
+    name: firewalld
+    state: started
+    enabled: yes
+  when: ansible_distribution == "OracleLinux"
+
+# This task Opens the Samba service port in the firewall.
+- name: Open Samba service port in firewall # Section B, Question 4c
+  tags: firewalld,sambaUbuntu
+  firewalld:
+    service: samba
+    state: enabled
+    immediate: yes
+    permanent: yes
+
+# This task Copies the admin_manual file to /usr/local/bin/.
+- name: Copy admin_manual file # Section B, Question 4d
+  copy:
+    src: admin_manual
+    dest: /usr/local/bin/admin_manual
+
+# Downloads and saves PyCharm Community Edition to /usr/local/bin/.
+- name: Check if the file exit
+  stat:
+    path: "/usr/local/bin/pycharm-community.tar.gz"
+  register: Pycharm
+
+- name: Download and save PyCharm Community Edition
+  when: not Pycharm.stat.exists or Pycharm.stat.size == 0
+  tags: PyCharm,Ubuntu,OracleLinux
+  get_url:
+    url: https://download.jetbrains.com/python/pycharm-community-2022.3.3.tar.gz
+    dest: /usr/local/bin/pycharm-community.tar.gz
+    mode: 0755
+    owner: root
+    group: root
