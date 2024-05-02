@@ -1,0 +1,14 @@
+---
+- hosts: all  # Ensures this runs on all hosts in your inventory
+  become: true  # Requires elevated privileges to copy files
+
+  tasks:
+    - name: Transfer file from Ansible root directory
+      copy:
+        src: ~/.ansible/passwords  # Replace with the actual file path in your Ansible root directory
+        dest: /home/controlhost  # Replace with the desired destination on all nodes
+       
+
+      vars:
+        ansible_vault: "{{ lookup('file', '/~/ingryd-linux-ansible-group-6/vault.yml') }}"  # Path to your vault file
+
