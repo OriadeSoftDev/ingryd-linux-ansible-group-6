@@ -1,4 +1,4 @@
-# This playbook Installs MySQL database server on both Ubuntu and OracleLinux distributions.
+# This task Installs MySQL database server on both Ubuntu and OracleLinux distributions.
 - name: Install mySQL database server (Ubuntu) #Section: B, Question 3a
   tags: MySQL,Ubuntu
   apt:
@@ -13,7 +13,7 @@
     state: present
   when: ansible_distribution == "OracleLinux"
 
-# This playbook Starts and enables the MySQL service on the respective distributions.
+# This task Starts and enables the MySQL service on the respective distributions.
 - name: Start and enable mySQL service #Section: B, Question 3b
   tags: MySQL,Ubuntu
   service:
@@ -30,7 +30,7 @@
     enabled: yes                      # Make sure the service is started on booting          
   when: ansible_distribution == "OracleLinux"
 
-# This playbook Assigns a password to the MySQL root user.
+# This task Assigns a password to the MySQL root user.
 - name: Assign password to mySQL root user #Section: B, Question 3b
   tags: MySQL
   user:

@@ -1,4 +1,4 @@
-# This playbook Installs system updates for both Ubuntu and OracleLinux.
+# This task Installs system updates for both Ubuntu and OracleLinux.
 - name: Install Updates (Ubuntu)
   tags: always
   apt:
@@ -14,7 +14,7 @@
   when: ansible_distribution == "OracleLinux"
 
 
-# This playbook Installs Apache and PHP packages for web server setup (Ubuntu and OracleLinux).
+# This task Installs Apache and PHP packages for web server setup (Ubuntu and OracleLinux).
 - name: Install apache and php packages (Ubuntu)
   tags: apache,apache2,php,Ubuntu
   apt:
@@ -34,7 +34,7 @@
   when: ansible_distribution == "OracleLinux"
 
 
-# This playbook Starts and enables the Apache service (only for OracleLinux).
+# This task Starts and enables the Apache service (only for OracleLinux).
 - name: Start httpd OracleLinux
   tags: apache, centOS, OracleLinux,httpd
   service:
@@ -44,7 +44,7 @@
   when: ansible_distribution == "OracleLinux"
 
 
-# This playbook Updates the ServerAdmin directive in the Apache configuration file for both Ubuntu and OracleLinux.
+# This task Updates the ServerAdmin directive in the Apache configuration file for both Ubuntu and OracleLinux.
 - name: Update ServerAdmin in Apache config file (Ubuntu) # Section:B, Question 2a
   tags: apache,apache2,Ubuntu
   lineinfile:
@@ -62,7 +62,7 @@
   when: ansible_distribution == "OracleLinux"
 
 
-# This playbook Restarts the Apache service (only for OracleLinux).
+# This task Restarts the Apache service (only for OracleLinux).
 - name: restart apache
   tags: httpd,OracleLinux,apache,apache2
   service:
@@ -71,7 +71,7 @@
   when: ansible_distribution == "OracleLinux"
 
 
-# This playbook Installs Firewalld (Ubuntu and OracleLinux).
+# This task Installs Firewalld (Ubuntu and OracleLinux).
 - name: Install Firewalld (Ubuntu)
   tags: firewalld,Ubuntu
   apt:
@@ -87,7 +87,7 @@
   when: ansible_distribution == "OracleLinux"
 
 
-# This playbook Opens HTTP and HTTPS ports in the firewall for both Ubuntu and OracleLinux.
+# This task Opens HTTP and HTTPS ports in the firewall for both Ubuntu and OracleLinux.
 - name: Open HTTP and HTTPS ports # Section:B, Question 2b
   tags: http,https,Ubuntu, OracleLinux,firewalld
   ansible.builtin.firewalld:
@@ -100,7 +100,7 @@
     - https
 
 
-# This playbook Starts and enables the Firewalld service (Ubuntu and OracleLinux).
+# This task Starts and enables the Firewalld service (Ubuntu and OracleLinux).
 - name: Start and enable firewalld # Section:B, Question 2c
   tags: firewalld,Ubuntu,OracleLinux
   systemd:
