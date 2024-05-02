@@ -29,17 +29,15 @@
         - adm
       append: yes
 
-  - name: Make Admin1 a sudoer
-    tags: always
-    copy:
-      src: sudoer_admin1
-      dest: /etc/sudoers.d/admin1
-      owner: root
-      group: root
-      mode: 0440
+  - name: Add Admin1 to sudoers
+  lineinfile:
+    path: /etc/sudoers.d/admin1  # Adjust path as needed
+    state: present
+    line: "username ALL=(ALL) NOPASSWD: /path/to/allowed/command"  # Replace with appropriate command
+    create: yes
 
   - name: Add ssh key for Admin1
-    tags: always
+    tags: always 
     authorized_key:
       user: admin1
       key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGw2FYbGMrBTOPMRl8+4Dgyjsu0kNllThsJJyxaXmBGM ansible
