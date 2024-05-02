@@ -1,0 +1,28 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+    - name: Update all packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Create admin user
+      user:
+        name: admin
+        groups: sudo,adm,root
+        append: yes
+        group: admin1
+
+    - name: Allow admin1 group to have sudo privileges
+      lineinfile:
+        dest: /etc/sudoers
+        state: present
+        regexp: '^%admin1'
+        line: '%admin1 ALL=(ALL) NOPASSWD: ALL'
+
+    - name: Add ansible ssh key to authorized_keys
+      authorized_key:
+        user: admin
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
