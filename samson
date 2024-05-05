@@ -1,0 +1,125 @@
+[33mcommit 4ab29d6a3a7c6942c0c052f724bc0f815c0683c7[m[33m ([m[1;36mHEAD -> [m[1;32mdickson[m[33m)[m
+Author: Dickson Akpan <dianaumoh@gmail.com>
+Date:   Thu May 2 13:56:39 2024 +0100
+
+    bootstrap.yml deleted
+
+[33mcommit 92db6fccf14dc1ed8af1dc3be18d6f3a46409288[m
+Author: Dickson Akpan <dianaumoh@gmail.com>
+Date:   Thu May 2 09:42:42 2024 +0100
+
+    modify bootstrap file
+
+[33mcommit 60559d7ea06c46d426cc577e6705050aa6f8fdb1[m[33m ([m[1;31morigin/dickson[m[33m)[m
+Author: Dickson Akpan <dianaumoh@gmail.com>
+Date:   Thu May 2 08:55:40 2024 +0100
+
+    ansible_vault and vault.yml added
+
+[33mcommit 879dcba60c7dcc7473fc3d54d4570b122355d5bd[m
+Merge: 98a20b3 61618da
+Author: Samdrox <100098279+Samdrox@users.noreply.github.com>
+Date:   Wed May 1 23:34:26 2024 +0100
+
+    Merge branch 'main' into dickson
+
+[33mcommit 61618daf66a782026e80432319df880ef6c91a45[m
+Merge: 0373785 06b375e
+Author: Samdrox <100098279+Samdrox@users.noreply.github.com>
+Date:   Wed May 1 23:26:45 2024 +0100
+
+    Merge pull request #1 from OriadeSoftDev/samson
+    
+    Samson
+
+[33mcommit 06b375e10c43c59e2b00b16af0a594d6b30eeeca[m
+Author: Samdrox <aruna.samsonsegun@gmail.com>
+Date:   Wed May 1 22:45:09 2024 +0100
+
+    AdminManual file created
+
+[33mcommit 98a20b3ad9190a160c0eef8e61efd62a9c475b41[m
+Author: Dickson Akpan <dianaumoh@gmail.com>
+Date:   Wed May 1 22:21:07 2024 +0100
+
+    ansible.cfg, inventory and role
+
+[33mcommit c7d0a3e144f699356acb97034ee5dd187ccf153f[m
+Author: Samdrox <aruna.samsonsegun@gmail.com>
+Date:   Wed May 1 20:26:38 2024 +0100
+
+    Plays to copy admin_manual file and download Pycharm Community Edition to all file servers added
+
+[33mcommit 405282fce359880bf2eaeff414e33fe6f628b33e[m
+Author: Samdrox <aruna.samsonsegun@gmail.com>
+Date:   Wed May 1 20:23:18 2024 +0100
+
+    file_servers.yml file created and Plays to install, start, enable and configure firewall for Samba on all file servers added
+
+[33mcommit 407f2a2fa1f2717c18fb5c32b6172724028b0261[m
+Author: Samdrox <aruna.samsonsegun@gmail.com>
+Date:   Wed May 1 20:19:50 2024 +0100
+
+    Plays to start MySQL on db servers and assign the password mySQLingryd to root user added
+
+[33mcommit 65852edd48b06b5d5ca4b7a18c2b535bffb811ee[m
+Author: Samdrox <aruna.samsonsegun@gmail.com>
+Date:   Wed May 1 20:16:24 2024 +0100
+
+    db_servers.yml file created and Plays to install MySQL database for db servers added
+
+[33mcommit b0832cc59122048fdb9e33984e27e115aeef5dc6[m
+Author: Samdrox <aruna.samsonsegun@gmail.com>
+Date:   Wed May 1 20:12:49 2024 +0100
+
+    Plays to Update ServerAdmin, Configure Firewall and start firewall for web servers added
+
+[33mcommit 60ff7048d7cb6a13d15bfa0cb3d6867b58095829[m
+Author: Samdrox <aruna.samsonsegun@gmail.com>
+Date:   Wed May 1 20:07:20 2024 +0100
+
+    web_servers.yml file created and content of server_config.yml file transfered
+
+[33mcommit 05058f6c35e52bb30cb17a104b6b0e8d689b4a40[m
+Author: Samdrox <aruna.samsonsegun@gmail.com>
+Date:   Wed May 1 19:50:40 2024 +0100
+
+    Added tags to tasks in server_config file
+
+[33mcommit f2833ed36935daeea80447b9c6f88f4edcab7e0c[m
+Author: Samdrox <aruna.samsonsegun@gmail.com>
+Date:   Wed May 1 19:42:12 2024 +0100
+
+    Added tags to tasks in bootstrap file
+
+[33mcommit 8e335280ed1d75075ec790364545980197620ad0[m
+Author: Samdrox <aruna.samsonsegun@gmail.com>
+Date:   Tue Apr 30 09:10:22 2024 +0100
+
+    Question 4: server_config.yml File Created
+
+[33mcommit 6915bb7166c05a7bc5d6d4b39001747fff62d49b[m
+Author: Samdrox <aruna.samsonsegun@gmail.com>
+Date:   Tue Apr 30 09:01:25 2024 +0100
+
+    Question 3: Ansible.cfg File Created
+
+[33mcommit 884b03119a802567594ebf3142a58e4e54171fa7[m
+Author: Samdrox <aruna.samsonsegun@gmail.com>
+Date:   Tue Apr 30 08:59:37 2024 +0100
+
+    Question 2: Inventory File Created
+
+[33mcommit 21ff1decb664ef64a551a8de8a192d8951e97a74[m
+Author: Samdrox <aruna.samsonsegun@gmail.com>
+Date:   Tue Apr 30 08:57:27 2024 +0100
+
+    Question 1: Bootstrap.yml File Created
+
+[33mcommit 0373785020140b5e4bfa24bb215792e8dc0f9927[m[33m ([m[1;32mmain[m[33m)[m
+Author: DHIKRULLAH ORIADE DUROSINMI <139797723+OriadeSoftDev@users.noreply.github.com>
+Date:   Mon Apr 29 10:32:45 2024 +0100
+
+    Create README.md
+    
+    Ansible configuration management project requirements

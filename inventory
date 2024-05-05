@@ -1,0 +1,12 @@
+# This section Assigns nodes to different groups: web_servers, db_servers, and file_servers.
+
+[web_servers]
+192.168.100.20
+
+[db_servers]
+192.168.100.30
+
+[file_servers]
+192.168.100.20
+192.168.100.30
+
