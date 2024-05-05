@@ -1,4 +1,5 @@
 ---
+
 - hosts: all
   become: true
   tasks:
@@ -39,5 +40,4 @@
     tags: always
     authorized_key:
       user: admin1
-      key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGw2FYbGMrBTOPMRl8+4Dgyjsu0kNllThsJJyxaXmBGM ansible
-
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGw2FYbGMrBTOPMRl8+4Dgyjsu0kNllThsJJyxaXmBGM ansible"
