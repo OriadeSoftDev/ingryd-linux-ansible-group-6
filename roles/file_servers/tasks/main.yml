@@ -34,7 +34,7 @@
 # This task Copies the admin_manual file to /usr/local/bin/.
 - name: Copy admin_manual file # Section B, Question 4d
   copy:
-    src: admin_manual
+    src: files/admin_manual
     dest: /usr/local/bin/admin_manual
 
 # Downloads and saves PyCharm Community Edition to /usr/local/bin/.

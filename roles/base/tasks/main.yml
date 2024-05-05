@@ -1,0 +1,38 @@
+- name: Install Updates (Ubuntu)
+  apt:
+    upgrade: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install Updates (OracleLinux)
+  dnf:
+    update_only: yes
+  when: ansible_distribution == "OracleLinux"
+
+- name: Create User Admin1
+  tags: always
+  user:
+    name: admin1
+    shell: /bin/bash
+    create_home: yes
+    groups: 
+      - root
+      - sudo
+      - adm
+    append: yes
+
+- name: Make Admin1 a sudoer
+  tags: always
+  copy:
+    src: files/sudoer_admin1
+    dest: /etc/sudoers.d/admin1
+    owner: root
+    group: root
+    mode: 0440
+
+- name: Add ssh key for Admin1
+  tags: always
+  authorized_key:
+    user: admin1
+    state: present
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDu2hpp3ON5pn7mJB1g7XEINs+wNC11o/TF1xwcvR/oM ansible"
+
